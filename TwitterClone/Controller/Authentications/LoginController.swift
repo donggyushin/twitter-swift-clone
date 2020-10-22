@@ -72,7 +72,7 @@ class LoginController: UIViewController {
     
     private lazy var emailTextField:UITextField = {
         let tf = UITextField()
-        tf.placeholder = "아이디"
+        tf.placeholder = "이메일"
         
         return tf
     }()

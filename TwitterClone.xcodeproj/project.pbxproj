@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		703BFD4F2541BDC400346F82 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703BFD4E2541BDC400346F82 /* RegistrationController.swift */; };
 		709409E62540788A002EFC40 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709409E52540788A002EFC40 /* LoginController.swift */; };
 		70FC4152253F32F8000FC661 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FC4151253F32F8000FC661 /* AppDelegate.swift */; };
 		70FC4154253F32F8000FC661 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FC4153253F32F8000FC661 /* SceneDelegate.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		703BFD4E2541BDC400346F82 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		709409E52540788A002EFC40 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		70FC414E253F32F8000FC661 /* TwitterClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70FC4151253F32F8000FC661 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				709409E52540788A002EFC40 /* LoginController.swift */,
+				703BFD4E2541BDC400346F82 /* RegistrationController.swift */,
 			);
 			path = Authentications;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 				70FC4179253F355B000FC661 /* NotificationsController.swift in Sources */,
 				70FC4152253F32F8000FC661 /* AppDelegate.swift in Sources */,
 				70FC4170253F34FF000FC661 /* FeedController.swift in Sources */,
+				703BFD4F2541BDC400346F82 /* RegistrationController.swift in Sources */,
 				70FC416C253F3406000FC661 /* MainTabController.swift in Sources */,
 				70FC4154253F32F8000FC661 /* SceneDelegate.swift in Sources */,
 				70FC4173253F3533000FC661 /* ExploreController.swift in Sources */,

@@ -95,7 +95,7 @@ class LoginController: UIViewController {
     
     private lazy var notyetAccountButton1:UIButton = {
         let bt = UIButton(type: UIButton.ButtonType.system)
-        bt.setTitle("아직 계정이 없으신가요?", for: UIControl.State.normal)
+        
         bt.addTarget(self, action: #selector(goToNewAccountController), for: UIControl.Event.touchUpInside)
 
 
@@ -133,6 +133,7 @@ class LoginController: UIViewController {
         // call the 'keyboardWillHide' function when the view controlelr receive notification that keyboard is going to be hidden
            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
+        
         configureUI()
     }
     
@@ -157,7 +158,10 @@ class LoginController: UIViewController {
     }
     
     @objc func goToNewAccountController() {
-        print("회원가입")
+        
+        let registrationController = RegistrationController()
+        
+        navigationController?.pushViewController(registrationController, animated: true)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -7,11 +7,14 @@
 
 import UIKit
 import PopupDialog
+import Firebase
 
 class RegistrationController: UIViewController, UIGestureRecognizerDelegate {
     // MARK: - Properties
     
     private lazy var imagePicker = UIImagePickerController()
+    
+    var userProfileImage:UIImage?
     
     private lazy var profilePhotoButton:UIButton = {
         let button = UIButton(type: UIButton.ButtonType.system)
@@ -285,20 +288,43 @@ class RegistrationController: UIViewController, UIGestureRecognizerDelegate {
     
     @objc func makeNewUser(){
         
-        guard let email = idTextField.text else { return }
+        // TODO: - 회원가입 버튼을 무력화시킨다.
+        registButton.isEnabled = false
         
-        guard let password1 = passwordTextField.text else { return  }
+        guard let email = idTextField.text else {
+            registButton.isEnabled = true
+            return
+            
+        }
         
-        guard let password2 = password2TextField.text else { return }
+        guard let password1 = passwordTextField.text else {
+            registButton.isEnabled = true
+            return  }
+        
+        guard let password2 = password2TextField.text else {
+            registButton.isEnabled = true
+            return }
         
         if(email == "") {
             renderPopup(title: "경고", message: "이메일을 입력해주세요")
+            registButton.isEnabled = true
             return
         }
         
         if (password1 != password2) {
             renderPopup(title: "경고", message: "비밀번호와 비밀번호확인이 서로 일치하지 않습니다")
+            registButton.isEnabled = true
             return
+        }
+        
+        AuthService.shared.registerUser(email: email, password1: password1, userProfileImage: self.userProfileImage) { (success, error, errorMessage) in
+            if let error = error, let errorMessage = errorMessage {
+                print("DEBUG: \(error.localizedDescription)")
+                self.renderPopup(title: "에러", message: errorMessage)
+            }else {
+                // TODO: - 유저를 로그인된 페이지로 옮겨준다
+                print("DEBUG: 유저 회원가입 성공")
+            }
         }
         
         
@@ -356,6 +382,8 @@ class RegistrationController: UIViewController, UIGestureRecognizerDelegate {
         
         
         
+        
+        
         buttonToLoginController.setAttributedTitle(firstString, for: UIControl.State.normal)
     }
 }
@@ -368,7 +396,7 @@ extension RegistrationController:UIImagePickerControllerDelegate,UINavigationCon
         
         profilePhotoButton.setImage(profileImage.withRenderingMode(UIImage.RenderingMode.alwaysOriginal), for: UIControl.State.normal)
         
-        
+        userProfileImage = profileImage
         
         
         dismiss(animated: true, completion: nil)

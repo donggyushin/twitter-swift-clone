@@ -7,13 +7,20 @@
 
 import UIKit
 
+protocol FeedContollerProtocol {
+    func logout()
+}
+
 class FeedController: UIViewController {
     
     // MARK: - Properties
     let user:UserModel
+    var delegate:FeedContollerProtocol?
     
     private lazy var twitterLogoImageView:UIImageView = {
        let imageView = UIImageView(image: #imageLiteral(resourceName: "twitter_logo_blue"))
+        imageView.widthAnchor.constraint(equalToConstant: 44).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 44).isActive = true
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -43,5 +50,13 @@ class FeedController: UIViewController {
         
         view.backgroundColor = .systemBackground
         navigationItem.titleView = twitterLogoImageView
+        
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "나가기", style: UIBarButtonItem.Style.plain, target: self, action: #selector(logoutButtonTapped))
+    }
+    
+    // MARK: - Selectors
+    @objc func logoutButtonTapped () {
+        self.delegate?.logout()
     }
 }

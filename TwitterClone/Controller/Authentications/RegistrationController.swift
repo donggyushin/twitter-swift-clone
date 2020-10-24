@@ -198,7 +198,7 @@ class RegistrationController: UIViewController, UIGestureRecognizerDelegate {
     func configureUI() {
         view.backgroundColor = .systemBackground
         let backItem = UIBarButtonItem(title: "이전", style: UIBarButtonItem.Style.plain, target: self, action: #selector(goBack))
-            
+        
         
         
         navigationItem.leftBarButtonItem = backItem

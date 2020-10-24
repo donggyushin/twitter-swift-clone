@@ -39,7 +39,7 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        view.backgroundColor = .systemBackground
         configureUI()
         authenticationUser()
     }
@@ -75,16 +75,8 @@ class MainTabBarController: UITabBarController {
     }
     
     @objc func twitButtonTapped(sender:UIButton) {
-        // 일시적으로 로그아웃 구현
-        do {
-            try Auth.auth().signOut()
-            let login = UINavigationController(rootViewController: LoginController())
-            login.modalPresentationStyle = .fullScreen
-            present(login, animated: true, completion: nil)
-            
-        }catch let error {
-            print("DEBUG: \(error.localizedDescription)")
-        }
+        
+        print("DEBUG: 트윗버튼 클릭")
         
     }
     
@@ -93,11 +85,13 @@ class MainTabBarController: UITabBarController {
         actionButton.translatesAutoresizingMaskIntoConstraints = false
         actionButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -12).isActive = true
         actionButton.bottomAnchor.constraint(equalTo: tabBar.topAnchor, constant: -24).isActive = true
+        
     }
     
     func configureViewControllers(user:UserModel) {
         
         let feed = FeedController(user: user)
+        feed.delegate = self
         let nav1 = UINavigationController(rootViewController: feed)
         nav1.tabBarItem.title = "피드"
         
@@ -121,4 +115,21 @@ class MainTabBarController: UITabBarController {
         
         viewControllers = [nav1, nav2, nav3, nav4]
     }
+}
+
+extension MainTabBarController: FeedContollerProtocol {
+    func logout() {
+        
+        do {
+            try Auth.auth().signOut()
+            let login = UINavigationController(rootViewController: LoginController())
+            login.modalPresentationStyle = .fullScreen
+            present(login, animated: true, completion: nil)
+            
+        }catch let error {
+            print("DEBUG: \(error.localizedDescription)")
+        }
+    }
+    
+    
 }

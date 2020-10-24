@@ -171,6 +171,9 @@ class LoginController: UIViewController {
                 self.renderPopup(title: "에러", message: "로그인에 실패하였습니다")
                 self.loginButton.isEnabled = true
             }else {
+                let mainTabController = UIApplication.shared.windows.first!.rootViewController as! MainTabBarController
+                
+                mainTabController.fetchUser(uid: result!.user.uid)
                 self.dismiss(animated: true, completion: nil)
             }
         }

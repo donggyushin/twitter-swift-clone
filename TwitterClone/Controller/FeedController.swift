@@ -10,6 +10,8 @@ import UIKit
 class FeedController: UIViewController {
     
     // MARK: - Properties
+    let user:UserModel
+    
     private lazy var twitterLogoImageView:UIImageView = {
        let imageView = UIImageView(image: #imageLiteral(resourceName: "twitter_logo_blue"))
         imageView.contentMode = .scaleAspectFit
@@ -17,6 +19,15 @@ class FeedController: UIViewController {
     }()
     
     // MARK: - Lifecycle
+    init(user:UserModel) {
+        
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

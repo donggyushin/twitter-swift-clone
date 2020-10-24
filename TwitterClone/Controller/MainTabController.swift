@@ -15,6 +15,7 @@ class MainTabBarController: UITabBarController {
         didSet{
             guard let user = self.user else { return }
             print("DEBUG: user is \(user)")
+            configureViewControllers(user: user)
         }
     }
     
@@ -38,7 +39,7 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureViewControllers()
+        
         configureUI()
         authenticationUser()
     }
@@ -56,16 +57,20 @@ class MainTabBarController: UITabBarController {
             
         }else {
             
-            UserService.shared.fetchUser(uid: Auth.auth().currentUser!.uid) { (error, user) in
-                if let error = error {
-                    print("DEBUG: \(error.localizedDescription)")
-                    self.renderPopup(title: "에러", message: "유저 정보를 가져오는데 실패하였습니다. ")
-                }else {
-                    guard let user = user else { return }
-                    self.user = user
-                }
-                
+            fetchUser(uid: Auth.auth().currentUser!.uid)
+        }
+    }
+    
+    func fetchUser (uid:String) {
+        UserService.shared.fetchUser(uid: Auth.auth().currentUser!.uid) { (error, user) in
+            if let error = error {
+                print("DEBUG: \(error.localizedDescription)")
+                self.renderPopup(title: "에러", message: "유저 정보를 가져오는데 실패하였습니다. ")
+            }else {
+                guard let user = user else { return }
+                self.user = user
             }
+            
         }
     }
     
@@ -90,22 +95,22 @@ class MainTabBarController: UITabBarController {
         actionButton.bottomAnchor.constraint(equalTo: tabBar.topAnchor, constant: -24).isActive = true
     }
     
-    func configureViewControllers() {
+    func configureViewControllers(user:UserModel) {
         
-        let feed = FeedController()
+        let feed = FeedController(user: user)
         let nav1 = UINavigationController(rootViewController: feed)
         nav1.tabBarItem.title = "피드"
         
-        let explore = ExploreController()
+        let explore = ExploreController(user: user)
         let nav2 = UINavigationController(rootViewController: explore)
         nav2.tabBarItem.title = "검색"
         
-        let notifications = NotificationsController()
+        let notifications = NotificationsController(user: user)
         let nav3 = UINavigationController(rootViewController: notifications)
         nav3.tabBarItem.title = "알림"
         
         
-        let conversations = ConversationController()
+        let conversations = ConversationController(user: user)
         let nav4 = UINavigationController(rootViewController: conversations)
         nav4.tabBarItem.title = "대화"
         

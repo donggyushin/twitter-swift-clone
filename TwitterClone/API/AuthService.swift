@@ -15,7 +15,7 @@ class AuthService {
         Auth.auth().signIn(withEmail: email, password: password, completion: completion)
     }
     
-    func registerUser(email:String, password1:String, userProfileImage:UIImage?, completion:@escaping (Bool, Error?, String?) -> Void) {
+    func registerUser(email:String, password1:String, userProfileImage:UIImage?, completion:@escaping (Bool, Error?, String?, String?) -> Void) {
         
         
         // 프로필 이미지가 있다면 업로드 해준다.
@@ -23,7 +23,7 @@ class AuthService {
             
             Auth.auth().createUser(withEmail: email, password: password1) { (result, error) in
                 if let error = error {
-                    completion(false, error, "회원가입 실패")
+                    completion(false, error, "회원가입 실패", nil)
                     return
                 }else {
                     guard let user = result?.user else { return }
@@ -45,10 +45,10 @@ class AuthService {
                                             "profileImage":url.absoluteString
                                         ]) { (error) in
                                             if let error = error {
-                                                completion(false, error, "회원가입 실패")
+                                                completion(false, error, "회원가입 실패", nil)
                                                 return
                                             }
-                                            completion(true, nil, nil)
+                                            completion(true, nil, nil, result!.user.uid)
                                         }
                                 }
                             }
@@ -66,12 +66,12 @@ class AuthService {
             Auth.auth().createUser(withEmail: email, password: password1) { (authDataResult, error) in
                 if let error = error {
                     
-                    completion(false, error, "유저를 생성하는데 실패하였습니다")
+                    completion(false, error, "유저를 생성하는데 실패하였습니다", nil)
                     return
                 }else {
                     
                     guard let user = authDataResult?.user else {
-                        completion(false, error, "유저를 생성하는데 실패하였습니다")
+                        completion(false, error, "유저를 생성하는데 실패하였습니다", nil)
                         return
                     }
                     let db = Firestore.firestore()
@@ -80,10 +80,10 @@ class AuthService {
                         "password":password1
                     ]) { (error) in
                         if let error = error {
-                            completion(false, error, "유저를 생성하는데 실패하였습니다")
+                            completion(false, error, "유저를 생성하는데 실패하였습니다", nil)
                             return
                         }else {
-                            
+                            completion(true, nil, nil, authDataResult!.user.uid)
                         }
                     }
                     

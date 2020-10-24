@@ -309,7 +309,7 @@ class RegistrationController: UIViewController, UIGestureRecognizerDelegate {
             return
         }
         
-        AuthService.shared.registerUser(email: email, password1: password1, userProfileImage: self.userProfileImage) { (success, error, errorMessage) in
+        AuthService.shared.registerUser(email: email, password1: password1, userProfileImage: self.userProfileImage) { (success, error, errorMessage, uid) in
             if let error = error, let errorMessage = errorMessage {
                 print("DEBUG: \(error.localizedDescription)")
                 self.renderPopup(title: "에러", message: errorMessage)
@@ -317,6 +317,9 @@ class RegistrationController: UIViewController, UIGestureRecognizerDelegate {
                 
                 print("DEBUG: 유저 회원가입 성공")
                 // 로그인 시켜준다
+                let mainTabController = UIApplication.shared.windows.first!.rootViewController as! MainTabBarController
+                
+                mainTabController.fetchUser(uid: uid!)
                 self.dismiss(animated: true, completion: nil)
             }
         }

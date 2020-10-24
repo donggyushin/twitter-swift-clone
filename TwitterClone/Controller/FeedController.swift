@@ -154,7 +154,6 @@ extension FeedController: UICollectionViewDataSource, UICollectionViewDelegate, 
         let messageHeight = message.height(withConstrainedWidth: width, font: UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.medium))
         
         
-        print("DEBUG: message height: \(messageHeight)")
         
         if (messageHeight > 32) {
             return CGSize(width: view.frame.width, height: 120 + messageHeight)

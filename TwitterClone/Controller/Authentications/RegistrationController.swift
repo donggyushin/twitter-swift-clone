@@ -24,8 +24,8 @@ class RegistrationController: UIViewController, UIGestureRecognizerDelegate {
         button.heightAnchor.constraint(equalToConstant: 56).isActive = true
         button.widthAnchor.constraint(equalToConstant: 56).isActive = true
         button.layer.cornerRadius = 28
-        button.layer.masksToBounds = false
-        button.clipsToBounds = true 
+        button.layer.masksToBounds = true
+        
         button.addTarget(self, action: #selector(selectPhotoFromLibrary), for: UIControl.Event.touchUpInside)
         
         return button

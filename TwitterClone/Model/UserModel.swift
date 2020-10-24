@@ -15,8 +15,8 @@ struct UserModel {
     let uid:String
     
     init(uid:String,data:[String:Any]) {
-        let email = data["email"] as! String
-        let password = data["password"] as! String
+        let email = data["email"] as? String ?? ""
+        let password = data["password"] as? String ?? ""
         self.uid = uid
         
         self.email = email

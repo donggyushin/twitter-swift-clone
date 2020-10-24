@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 protocol FeedContollerProtocol {
     func logout()
@@ -16,6 +17,29 @@ class FeedController: UIViewController {
     // MARK: - Properties
     let user:UserModel
     var delegate:FeedContollerProtocol?
+    
+    private lazy var profileImageButton:UIButton = {
+        let bt = UIButton(type: UIButton.ButtonType.system)
+        bt.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        bt.widthAnchor.constraint(equalToConstant: 48).isActive = true
+        bt.layer.cornerRadius = 24
+        bt.contentMode = .scaleAspectFit
+        bt.layer.masksToBounds = true
+        if let userProfileImage = self.user.profileImage {
+
+            if let url = URL(string: userProfileImage) {
+
+                bt.sd_setBackgroundImage(with: url, for: UIControl.State.normal, completed: nil)
+            }else {
+                bt.setImage(#imageLiteral(resourceName: "twitter_logo_blue").withRenderingMode(UIImage.RenderingMode.alwaysOriginal), for: UIControl.State.normal)
+            }
+
+        }else {
+            bt.setImage(#imageLiteral(resourceName: "twitter_logo_blue").withRenderingMode(UIImage.RenderingMode.alwaysOriginal), for: UIControl.State.normal)
+        }
+        
+        return bt
+    }()
     
     private lazy var twitterLogoImageView:UIImageView = {
        let imageView = UIImageView(image: #imageLiteral(resourceName: "twitter_logo_blue"))
@@ -53,6 +77,7 @@ class FeedController: UIViewController {
         
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "나가기", style: UIBarButtonItem.Style.plain, target: self, action: #selector(logoutButtonTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: profileImageButton)
     }
     
     // MARK: - Selectors

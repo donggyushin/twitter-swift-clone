@@ -13,4 +13,5 @@ target 'TwitterClone' do
 	pod 'Firebase/Storage'
 	pod 'PopupDialog', '~> 1.1'
 	pod 'FirebaseFirestoreSwift'
+	pod 'SDWebImage', '~> 5.0'
 end

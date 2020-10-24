@@ -312,6 +312,9 @@ PODS:
   - PopupDialog (1.1.1):
     - DynamicBlurView (~> 4.0)
   - PromisesObjC (1.2.10)
+  - SDWebImage (5.9.0):
+    - SDWebImage/Core (= 5.9.0)
+  - SDWebImage/Core (5.9.0)
 
 DEPENDENCIES:
   - Firebase/Auth
@@ -319,6 +322,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - FirebaseFirestoreSwift
   - PopupDialog (~> 1.1)
+  - SDWebImage (~> 5.0)
 
 SPEC REPOS:
   trunk:
@@ -341,6 +345,7 @@ SPEC REPOS:
     - nanopb
     - PopupDialog
     - PromisesObjC
+    - SDWebImage
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -362,7 +367,8 @@ SPEC CHECKSUMS:
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PopupDialog: 720c92befd8bc23c13442254945213db5612f149
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
+  SDWebImage: 62ae4a18473520c67b79e9724c31a63599cc9423
 
-PODFILE CHECKSUM: 4862865fff9508d57af3f59555b537f6e6a02dd7
+PODFILE CHECKSUM: 83c1721a563532abc1a60ccfa16956978b986a5d
 
 COCOAPODS: 1.9.3

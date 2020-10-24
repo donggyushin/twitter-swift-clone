@@ -10,7 +10,7 @@ import SDWebImage
 
 private let reuseIdentifier = "TweetCell"
 
-protocol FeedContollerProtocol {
+protocol FeedContollerProtocol:class {
     func logout()
 }
 
@@ -18,7 +18,7 @@ class FeedController: UIViewController {
     
     // MARK: - Properties
     let user:UserModel
-    var delegate:FeedContollerProtocol?
+    weak var delegate:FeedContollerProtocol?
     var tweets:[TweetModel] = [] {
         didSet {
             self.collectionView.reloadData()
@@ -85,7 +85,6 @@ class FeedController: UIViewController {
     // MARK: - APIs
     
     func fetchTweets () {
-        print("DEBUG: fetch tweets 호출")
         TweetService.shared.fetchTweets { (error, tweets) in
             if let error = error {
                 self.renderPopup(title: "에러", message: error.localizedDescription)
@@ -138,6 +137,7 @@ extension FeedController: UICollectionViewDataSource, UICollectionViewDelegate, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! TweetCell
         cell.tweet = self.tweets[indexPath.row]
+        cell.delegate = self
         return cell
     }
     
@@ -167,4 +167,14 @@ extension FeedController: UICollectionViewDataSource, UICollectionViewDelegate, 
         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
+}
+
+
+extension FeedController:TweetCellProtocol {
+
+    func navigateToProfileController(user: UserModel) {
+        let profileController = ProfileController(user: user)
+        
+        navigationController?.pushViewController(profileController, animated: true)
+    }
 }

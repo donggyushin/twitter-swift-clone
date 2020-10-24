@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol TweetCellProtocol: class {
+    func navigateToProfileController(user:UserModel)
+}
+
 class TweetCell:UICollectionViewCell {
     
     // MARK: - Properties
+    
+    weak var delegate:TweetCellProtocol?
     
     var tweet:TweetModel? {
         didSet {
@@ -50,6 +56,10 @@ class TweetCell:UICollectionViewCell {
         iv.heightAnchor.constraint(equalToConstant: 48).isActive = true
         iv.layer.cornerRadius = 24
         iv.clipsToBounds = true
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(profileImageTapped))
+        iv.addGestureRecognizer(tap)
+        iv.isUserInteractionEnabled = true 
         
         return iv
     }()
@@ -161,6 +171,10 @@ class TweetCell:UICollectionViewCell {
     }
     
     // MARK: - Selectors
+    @objc func profileImageTapped() {
+        guard let user = self.tweetUser else { return }
+        self.delegate?.navigateToProfileController(user: user)
+    }
     
     // MARK: - Helpers
     

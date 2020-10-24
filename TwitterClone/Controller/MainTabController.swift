@@ -14,7 +14,6 @@ class MainTabBarController: UITabBarController {
     private var user:UserModel? {
         didSet{
             guard let user = self.user else { return }
-            print("DEBUG: user is \(user)")
             configureViewControllers(user: user)
         }
     }

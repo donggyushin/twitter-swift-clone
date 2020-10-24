@@ -18,6 +18,8 @@
 		706B6BDE2543E9B300FEAEEA /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706B6BDD2543E9B300FEAEEA /* UserService.swift */; };
 		706B6BE22543EB0B00FEAEEA /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706B6BE12543EB0B00FEAEEA /* UserModel.swift */; };
 		709409E62540788A002EFC40 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709409E52540788A002EFC40 /* LoginController.swift */; };
+		70B4F92525446D85005CE631 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B4F92425446D85005CE631 /* ProfileController.swift */; };
+		70B4F92825447005005CE631 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B4F92725447005005CE631 /* ProfileHeaderView.swift */; };
 		70FC4152253F32F8000FC661 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FC4151253F32F8000FC661 /* AppDelegate.swift */; };
 		70FC4154253F32F8000FC661 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FC4153253F32F8000FC661 /* SceneDelegate.swift */; };
 		70FC4156253F32F8000FC661 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FC4155253F32F8000FC661 /* ViewController.swift */; };
@@ -47,6 +49,8 @@
 		706B6BDD2543E9B300FEAEEA /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		706B6BE12543EB0B00FEAEEA /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		709409E52540788A002EFC40 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		70B4F92425446D85005CE631 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		70B4F92725447005005CE631 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		70FC414E253F32F8000FC661 /* TwitterClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70FC4151253F32F8000FC661 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70FC4153253F32F8000FC661 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -149,6 +153,7 @@
 			children = (
 				701F5C3B254412ED0050EFEB /* CaptionTextView.swift */,
 				701F5C4425443C460050EFEB /* TweetCell.swift */,
+				70B4F92725447005005CE631 /* ProfileHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -163,6 +168,7 @@
 				70FC4175253F3545000FC661 /* ConversationsController.swift */,
 				70FC4178253F355B000FC661 /* NotificationsController.swift */,
 				701F5C3825440AFD0050EFEB /* UploadTweetController.swift */,
+				70B4F92425446D85005CE631 /* ProfileController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -329,7 +335,9 @@
 				706B6BE22543EB0B00FEAEEA /* UserModel.swift in Sources */,
 				703BFD4F2541BDC400346F82 /* RegistrationController.swift in Sources */,
 				70FC416C253F3406000FC661 /* MainTabController.swift in Sources */,
+				70B4F92825447005005CE631 /* ProfileHeaderView.swift in Sources */,
 				701F5C3925440AFD0050EFEB /* UploadTweetController.swift in Sources */,
+				70B4F92525446D85005CE631 /* ProfileController.swift in Sources */,
 				70FC4154253F32F8000FC661 /* SceneDelegate.swift in Sources */,
 				70FC4173253F3533000FC661 /* ExploreController.swift in Sources */,
 				701F5C422544349B0050EFEB /* TweetModel.swift in Sources */,

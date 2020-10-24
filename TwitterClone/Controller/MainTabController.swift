@@ -44,7 +44,25 @@ class MainTabBarController: UITabBarController {
         authenticationUser()
     }
     
+    // MARK: - APIs
+    
+    func fetchUser (uid:String) {
+        UserService.shared.fetchUser(uid: Auth.auth().currentUser!.uid) { (error, user) in
+            if let error = error {
+                print("DEBUG: \(error.localizedDescription)")
+                self.renderPopup(title: "에러", message: "유저 정보를 가져오는데 실패하였습니다. ")
+            }else {
+                guard let user = user else { return }
+                self.user = user
+            }
+            
+        }
+    }
+    
+    
     // MARK: - Helpers
+    
+    
     
     func authenticationUser() {
         if(Auth.auth().currentUser == nil) {
@@ -61,18 +79,7 @@ class MainTabBarController: UITabBarController {
         }
     }
     
-    func fetchUser (uid:String) {
-        UserService.shared.fetchUser(uid: Auth.auth().currentUser!.uid) { (error, user) in
-            if let error = error {
-                print("DEBUG: \(error.localizedDescription)")
-                self.renderPopup(title: "에러", message: "유저 정보를 가져오는데 실패하였습니다. ")
-            }else {
-                guard let user = user else { return }
-                self.user = user
-            }
-            
-        }
-    }
+    
     
     @objc func twitButtonTapped(sender:UIButton) {
         
@@ -126,6 +133,17 @@ extension MainTabBarController: FeedContollerProtocol {
             try Auth.auth().signOut()
             let login = UINavigationController(rootViewController: LoginController())
             login.modalPresentationStyle = .fullScreen
+            self.user = nil
+            
+            let feedNav = viewControllers?[0] as! UINavigationController
+            let feedVC = feedNav.viewControllers[0] as! FeedController
+            feedVC.tweets = []
+            
+            self.viewControllers = []
+            
+            
+            
+            
             present(login, animated: true, completion: nil)
             
         }catch let error {

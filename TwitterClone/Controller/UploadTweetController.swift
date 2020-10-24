@@ -92,7 +92,34 @@ class UploadTweetController:UIViewController {
     
     // MARK: Selectors
     @objc func tweet(){
+        
+        let rootViewController = UIApplication.shared.windows.first!.rootViewController as! MainTabBarController
+        let feedNavigationController = rootViewController.viewControllers?[0] as? UINavigationController
+        let feedController = feedNavigationController?.viewControllers[0] as? FeedController
+        
+        
+        
+        
         print("DEBUG: Tweet action button tapped")
+        if captionTextView.text.count < 1 {
+            renderPopup(title: "경고", message: "2 자 이상 적어주세요")
+            return
+        }
+        
+        actionButton.isEnabled = false
+        
+        TweetService.shared.postTweet(message: captionTextView.text, uid: self.user.uid) { (error) in
+            if let error = error {
+                self.renderPopup(title: "에러", message: error.localizedDescription)
+                self.actionButton.isEnabled = true
+            }else {
+                feedController?.fetchTweets()
+                self.actionButton.isEnabled = true
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+        
+        
     }
     
     // MARK: - APIs

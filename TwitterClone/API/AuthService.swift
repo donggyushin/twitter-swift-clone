@@ -11,58 +11,86 @@ import Firebase
 class AuthService {
     static let shared = AuthService()
     
+    func signInUser(email:String, password:String, completion:@escaping (AuthDataResult?, Error?) -> Void) {
+        Auth.auth().signIn(withEmail: email, password: password, completion: completion)
+    }
+    
     func registerUser(email:String, password1:String, userProfileImage:UIImage?, completion:@escaping (Bool, Error?, String?) -> Void) {
-        Auth.auth().createUser(withEmail: email, password: password1) { (authDataResult, error) in
-            if let error = error {
-                
-                completion(false, error, "유저를 생성하는데 실패하였습니다")
-                return
-            }else {
-                guard let user = authDataResult?.user else {
-                    completion(false, error, "유저를 생성하는데 실패하였습니다.")
+        
+        
+        // 프로필 이미지가 있다면 업로드 해준다.
+        if let profileImage = userProfileImage {
+            
+            Auth.auth().createUser(withEmail: email, password: password1) { (result, error) in
+                if let error = error {
+                    completion(false, error, "회원가입 실패")
                     return
-                }
-                
-                let db = Firestore.firestore()
-                var ref:DocumentReference?
-                ref = db.collection("users").addDocument(data: [
-                        "email": email,
-                        "password": password1,
-                        "id": user.uid
-                    ], completion: { (error) in
-                        
-                        if let error = error {
-                            completion(false, error, "데이터베이스에 유저를 추가하는데 실패하였습니다")
-                            return
-                        }
-                        
-                        completion(true, nil, nil)
-                        
-                        // 프로필 이미지가 있다면 업로드해준다.
-                        if let profileImage = userProfileImage {
-                            let storage = Storage.storage()
-                            let storageRef = storage.reference()
-                            let profileRef = storageRef.child(NSUUID().uuidString)
-                            if let data = profileImage.pngData() {
-                                let uploadTask = profileRef.putData(data, metadata: nil) { (metadata, error) in
-                                    if let error = error {
-                                        print("DEBUG: \(error.localizedDescription)")
-                                        return
-                                    }
-                                    profileRef.downloadURL { (url, error) in
-                                        if let url = url {
-                                            ref?.updateData(["profileImage":url.absoluteString])
-                                            return
+                }else {
+                    guard let user = result?.user else { return }
+                    if let data = profileImage.pngData() {
+                        let storage = Storage.storage()
+                        let storageRef = storage.reference()
+                        let profileRef = storageRef.child("\(user.uid).jpg")
+                        let uploadTask = profileRef.putData(data, metadata: nil) { (metadata, error) in
+                            if let error = error {
+                                print("DEBUG: \(error.localizedDescription)")
+                                return
+                            }else {
+                                profileRef.downloadURL { (url, error) in
+                                    if let url = url {
+                                        let db = Firestore.firestore()
+                                        db.collection("users").document(user.uid).setData([
+                                            "email":email,
+                                            "password": password1,
+                                            "profileImage":url.absoluteString
+                                        ]) { (error) in
+                                            if let error = error {
+                                                completion(false, error, "회원가입 실패")
+                                                return
+                                            }
+                                            completion(true, nil, nil)
                                         }
-                                    }
                                 }
-                                uploadTask.resume()
                             }
                         }
-               
-                    })
-                
+                        
+                    }
+                        uploadTask.resume()
+                    
+                }
+            }
+            
             }
         }
+        else {
+            Auth.auth().createUser(withEmail: email, password: password1) { (authDataResult, error) in
+                if let error = error {
+                    
+                    completion(false, error, "유저를 생성하는데 실패하였습니다")
+                    return
+                }else {
+                    
+                    guard let user = authDataResult?.user else {
+                        completion(false, error, "유저를 생성하는데 실패하였습니다")
+                        return
+                    }
+                    let db = Firestore.firestore()
+                    db.collection("users").document(user.uid).setData([
+                        "email":email,
+                        "password":password1
+                    ]) { (error) in
+                        if let error = error {
+                            completion(false, error, "유저를 생성하는데 실패하였습니다")
+                            return
+                        }else {
+                            
+                        }
+                    }
+                    
+                }
+            }
+        }
+        
+        
     }
 }

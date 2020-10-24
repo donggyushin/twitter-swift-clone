@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		702D310325434FDE006A4655 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702D310225434FDE006A4655 /* AuthService.swift */; };
 		703BFD4F2541BDC400346F82 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703BFD4E2541BDC400346F82 /* RegistrationController.swift */; };
+		706B6BDE2543E9B300FEAEEA /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706B6BDD2543E9B300FEAEEA /* UserService.swift */; };
+		706B6BE22543EB0B00FEAEEA /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706B6BE12543EB0B00FEAEEA /* UserModel.swift */; };
 		709409E62540788A002EFC40 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709409E52540788A002EFC40 /* LoginController.swift */; };
 		70FC4152253F32F8000FC661 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FC4151253F32F8000FC661 /* AppDelegate.swift */; };
 		70FC4154253F32F8000FC661 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FC4153253F32F8000FC661 /* SceneDelegate.swift */; };
@@ -30,6 +32,8 @@
 		5D33D51F296CB2AEB7F5389B /* Pods-TwitterClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterClone.debug.xcconfig"; path = "Target Support Files/Pods-TwitterClone/Pods-TwitterClone.debug.xcconfig"; sourceTree = "<group>"; };
 		702D310225434FDE006A4655 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		703BFD4E2541BDC400346F82 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		706B6BDD2543E9B300FEAEEA /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		706B6BE12543EB0B00FEAEEA /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		709409E52540788A002EFC40 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		70FC414E253F32F8000FC661 /* TwitterClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70FC4151253F32F8000FC661 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +75,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		706B6BE02543EB0200FEAEEA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				706B6BE12543EB0B00FEAEEA /* UserModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		709409E42540786F002EFC40 /* Authentications */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +113,7 @@
 		70FC4150253F32F8000FC661 /* TwitterClone */ = {
 			isa = PBXGroup;
 			children = (
+				706B6BE02543EB0200FEAEEA /* Model */,
 				70FC416A253F3387000FC661 /* Utils */,
 				70FC4169253F3383000FC661 /* API */,
 				70FC4168253F337E000FC661 /* ViewModel */,
@@ -149,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				702D310225434FDE006A4655 /* AuthService.swift */,
+				706B6BDD2543E9B300FEAEEA /* UserService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -290,7 +304,9 @@
 				702D310325434FDE006A4655 /* AuthService.swift in Sources */,
 				70FC4179253F355B000FC661 /* NotificationsController.swift in Sources */,
 				70FC4152253F32F8000FC661 /* AppDelegate.swift in Sources */,
+				706B6BDE2543E9B300FEAEEA /* UserService.swift in Sources */,
 				70FC4170253F34FF000FC661 /* FeedController.swift in Sources */,
+				706B6BE22543EB0B00FEAEEA /* UserModel.swift in Sources */,
 				703BFD4F2541BDC400346F82 /* RegistrationController.swift in Sources */,
 				70FC416C253F3406000FC661 /* MainTabController.swift in Sources */,
 				70FC4154253F32F8000FC661 /* SceneDelegate.swift in Sources */,

@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import PopupDialog
 
 class LoginController: UIViewController {
     // MARK: - Properties
@@ -138,6 +140,9 @@ class LoginController: UIViewController {
     }
     
     // MARK: - Helpers
+    
+    
+    
     @objc func keyboardWillHide(notification: NSNotification) {
       // move back the root view origin to zero
       self.view.frame.origin.y = 0
@@ -154,7 +159,21 @@ class LoginController: UIViewController {
     }
     
     @objc func loginButtonTapped() {
-        print("로그인")
+        guard let email = self.emailTextField.text else { return }
+        guard let password = self.passwordTextField.text else { return }
+        
+        loginButton.isEnabled = false
+         
+        
+        AuthService.shared.signInUser(email: email, password: password) { (result, error) in
+            if let error = error {
+                print("DEBUG: \(error.localizedDescription)")
+                self.renderPopup(title: "에러", message: "로그인에 실패하였습니다")
+                self.loginButton.isEnabled = true
+            }else {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
     }
     
     @objc func goToNewAccountController() {

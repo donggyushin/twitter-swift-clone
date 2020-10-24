@@ -6,8 +6,21 @@
 //
 
 import UIKit
+import PopupDialog
 
 extension UIViewController {
+    
+    func renderPopup(title:String, message:String){
+        
+
+        let popup = PopupDialog(title: title, message: message)
+        let buttonOne = DefaultButton(title: "확인", height: 60) {
+            
+        }
+        
+        popup.addButton(buttonOne)
+        present(popup, animated: true, completion: nil)
+    }
     
     
     func cleanNavigationBar() {

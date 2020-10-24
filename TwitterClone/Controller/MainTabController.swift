@@ -6,10 +6,19 @@
 //
 
 import UIKit
+import Firebase
 
 class MainTabBarController: UITabBarController {
     
     // MARK: - Properties
+    private var user:UserModel? {
+        didSet{
+            guard let user = self.user else { return }
+            print("DEBUG: user is \(user)")
+        }
+    }
+    
+    
     private lazy var actionButton:UIButton = {
         let button = UIButton(type: UIButton.ButtonType.system)
         
@@ -31,12 +40,47 @@ class MainTabBarController: UITabBarController {
         
         configureViewControllers()
         configureUI()
+        authenticationUser()
     }
     
     // MARK: - Helpers
     
+    func authenticationUser() {
+        if(Auth.auth().currentUser == nil) {
+            // 로그인이 안되었을땐 logincontroller를 띄워준다.
+            DispatchQueue.main.async {
+                let login = UINavigationController(rootViewController: LoginController())
+                login.modalPresentationStyle = .fullScreen
+                self.present(login, animated: true, completion: nil)
+            }
+            
+        }else {
+            
+            UserService.shared.fetchUser(uid: Auth.auth().currentUser!.uid) { (error, user) in
+                if let error = error {
+                    print("DEBUG: \(error.localizedDescription)")
+                    self.renderPopup(title: "에러", message: "유저 정보를 가져오는데 실패하였습니다. ")
+                }else {
+                    guard let user = user else { return }
+                    self.user = user
+                }
+                
+            }
+        }
+    }
+    
     @objc func twitButtonTapped(sender:UIButton) {
-        print("123")
+        // 일시적으로 로그아웃 구현
+        do {
+            try Auth.auth().signOut()
+            let login = UINavigationController(rootViewController: LoginController())
+            login.modalPresentationStyle = .fullScreen
+            present(login, animated: true, completion: nil)
+            
+        }catch let error {
+            print("DEBUG: \(error.localizedDescription)")
+        }
+        
     }
     
     func configureUI() {

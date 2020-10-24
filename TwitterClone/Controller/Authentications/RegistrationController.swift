@@ -16,6 +16,8 @@ class RegistrationController: UIViewController, UIGestureRecognizerDelegate {
     
     var userProfileImage:UIImage?
     
+    
+    
     private lazy var profilePhotoButton:UIButton = {
         let button = UIButton(type: UIButton.ButtonType.system)
         button.setImage(#imageLiteral(resourceName: "twitter_logo_blue").withRenderingMode(UIImage.RenderingMode.alwaysOriginal), for: UIControl.State.normal)
@@ -274,17 +276,7 @@ class RegistrationController: UIViewController, UIGestureRecognizerDelegate {
         cb.separatorColor = UIColor(red:0.20, green:0.20, blue:0.25, alpha:1.00)
     }
     
-    func renderPopup(title:String, message:String){
-        
-
-        let popup = PopupDialog(title: title, message: message)
-        let buttonOne = DefaultButton(title: "확인", height: 60) {
-            
-        }
-        
-        popup.addButton(buttonOne)
-        present(popup, animated: true, completion: nil)
-    }
+    
     
     @objc func makeNewUser(){
         
@@ -322,8 +314,10 @@ class RegistrationController: UIViewController, UIGestureRecognizerDelegate {
                 print("DEBUG: \(error.localizedDescription)")
                 self.renderPopup(title: "에러", message: errorMessage)
             }else {
-                // TODO: - 유저를 로그인된 페이지로 옮겨준다
+                
                 print("DEBUG: 유저 회원가입 성공")
+                // 로그인 시켜준다
+                self.dismiss(animated: true, completion: nil)
             }
         }
         

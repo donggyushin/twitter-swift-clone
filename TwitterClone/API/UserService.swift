@@ -19,7 +19,7 @@ class UserService {
                 return
             }else {
                 guard let data = querySnapshot!.data() else { return }
-                let user = UserModel(data: data)
+                let user = UserModel(uid:uid, data: data)
                 completion(nil, user)
                 return
             }

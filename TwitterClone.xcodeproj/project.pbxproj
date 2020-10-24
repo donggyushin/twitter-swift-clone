@@ -14,6 +14,7 @@
 		701F5C4525443C460050EFEB /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701F5C4425443C460050EFEB /* TweetCell.swift */; };
 		702D310325434FDE006A4655 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702D310225434FDE006A4655 /* AuthService.swift */; };
 		703BFD4F2541BDC400346F82 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703BFD4E2541BDC400346F82 /* RegistrationController.swift */; };
+		704EFDE625445E0800B1789F /* TimeAgo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704EFDE525445E0800B1789F /* TimeAgo.swift */; };
 		706B6BDE2543E9B300FEAEEA /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706B6BDD2543E9B300FEAEEA /* UserService.swift */; };
 		706B6BE22543EB0B00FEAEEA /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706B6BE12543EB0B00FEAEEA /* UserModel.swift */; };
 		709409E62540788A002EFC40 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709409E52540788A002EFC40 /* LoginController.swift */; };
@@ -42,6 +43,7 @@
 		701F5C4425443C460050EFEB /* TweetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 		702D310225434FDE006A4655 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		703BFD4E2541BDC400346F82 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		704EFDE525445E0800B1789F /* TimeAgo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAgo.swift; sourceTree = "<group>"; };
 		706B6BDD2543E9B300FEAEEA /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		706B6BE12543EB0B00FEAEEA /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		709409E52540788A002EFC40 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				70FC417C253F3FB1000FC661 /* Extensions.swift */,
+				704EFDE525445E0800B1789F /* TimeAgo.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				702D310325434FDE006A4655 /* AuthService.swift in Sources */,
 				70FC4179253F355B000FC661 /* NotificationsController.swift in Sources */,
 				701F5C3F25441D0D0050EFEB /* TweetService.swift in Sources */,
+				704EFDE625445E0800B1789F /* TimeAgo.swift in Sources */,
 				70FC4152253F32F8000FC661 /* AppDelegate.swift in Sources */,
 				706B6BDE2543E9B300FEAEEA /* UserService.swift in Sources */,
 				70FC4170253F34FF000FC661 /* FeedController.swift in Sources */,

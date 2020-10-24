@@ -15,6 +15,10 @@ class TweetCell:UICollectionViewCell {
         didSet {
             guard let tweet = self.tweet else { return }
             
+            
+            
+            self.timeAgoLabel.text = timeAgoSince(tweet.createdAt)
+            
             self.message.text = tweet.message
             
             UserService.shared.fetchUser(uid: tweet.uid) { (error, user) in
@@ -60,6 +64,13 @@ class TweetCell:UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 13, weight: UIFont.Weight.medium)
         label.numberOfLines = 0
+        return label
+    }()
+    
+    private lazy var timeAgoLabel:UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.systemGray3
+        label.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.light)
         return label
     }()
     
@@ -125,6 +136,12 @@ class TweetCell:UICollectionViewCell {
         usernameAndMessage.topAnchor.constraint(equalTo: topAnchor, constant: 16).isActive = true
         usernameAndMessage.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 9).isActive = true
         usernameAndMessage.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
+        
+        
+        addSubview(timeAgoLabel)
+        timeAgoLabel.translatesAutoresizingMaskIntoConstraints = false
+        timeAgoLabel.topAnchor.constraint(equalTo: topAnchor, constant: 16).isActive = true
+        timeAgoLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -16).isActive = true
         
         let buttons = UIStackView(arrangedSubviews: [commentButton, cycleButton, likeButton, shareButton])
         buttons.axis = .horizontal

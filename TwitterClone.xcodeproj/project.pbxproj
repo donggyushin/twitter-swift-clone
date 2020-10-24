@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		701F5C3925440AFD0050EFEB /* UploadTweetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701F5C3825440AFD0050EFEB /* UploadTweetController.swift */; };
+		701F5C3C254412ED0050EFEB /* CaptionTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701F5C3B254412ED0050EFEB /* CaptionTextView.swift */; };
 		702D310325434FDE006A4655 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702D310225434FDE006A4655 /* AuthService.swift */; };
 		703BFD4F2541BDC400346F82 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703BFD4E2541BDC400346F82 /* RegistrationController.swift */; };
 		706B6BDE2543E9B300FEAEEA /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706B6BDD2543E9B300FEAEEA /* UserService.swift */; };
@@ -30,6 +32,8 @@
 
 /* Begin PBXFileReference section */
 		5D33D51F296CB2AEB7F5389B /* Pods-TwitterClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterClone.debug.xcconfig"; path = "Target Support Files/Pods-TwitterClone/Pods-TwitterClone.debug.xcconfig"; sourceTree = "<group>"; };
+		701F5C3825440AFD0050EFEB /* UploadTweetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTweetController.swift; sourceTree = "<group>"; };
+		701F5C3B254412ED0050EFEB /* CaptionTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionTextView.swift; sourceTree = "<group>"; };
 		702D310225434FDE006A4655 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		703BFD4E2541BDC400346F82 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		706B6BDD2543E9B300FEAEEA /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -134,6 +138,7 @@
 		70FC4166253F3314000FC661 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				701F5C3B254412ED0050EFEB /* CaptionTextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -147,6 +152,7 @@
 				70FC4172253F3533000FC661 /* ExploreController.swift */,
 				70FC4175253F3545000FC661 /* ConversationsController.swift */,
 				70FC4178253F355B000FC661 /* NotificationsController.swift */,
+				701F5C3825440AFD0050EFEB /* UploadTweetController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -309,8 +315,10 @@
 				706B6BE22543EB0B00FEAEEA /* UserModel.swift in Sources */,
 				703BFD4F2541BDC400346F82 /* RegistrationController.swift in Sources */,
 				70FC416C253F3406000FC661 /* MainTabController.swift in Sources */,
+				701F5C3925440AFD0050EFEB /* UploadTweetController.swift in Sources */,
 				70FC4154253F32F8000FC661 /* SceneDelegate.swift in Sources */,
 				70FC4173253F3533000FC661 /* ExploreController.swift in Sources */,
+				701F5C3C254412ED0050EFEB /* CaptionTextView.swift in Sources */,
 				709409E62540788A002EFC40 /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

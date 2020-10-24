@@ -76,8 +76,10 @@ class MainTabBarController: UITabBarController {
     
     @objc func twitButtonTapped(sender:UIButton) {
         
-        print("DEBUG: 트윗버튼 클릭")
+        guard let user = self.user else { return }
         
+        let uploadTwitController = UINavigationController(rootViewController: UploadTweetController(user: user))
+        present(uploadTwitController, animated: true, completion: nil)
     }
     
     func configureUI() {
